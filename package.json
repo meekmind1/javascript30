@@ -1,0 +1,15 @@
+{
+  "name": "javascript30",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:tomodwyer/javascript30.git",
+  "author": "Tom O'Dwyer <git@tomodwyer.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb": "latest",
+    "eslint-plugin-import": "^2.1.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.6.0"
+  }
+}
