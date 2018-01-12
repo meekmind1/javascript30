@@ -8,11 +8,11 @@ function handleCheck(e) {
   // AND check they are checking an input
   if (e.shiftKey && this.checked) {
     // Loop over every single checkbox
-    checkboxes.forEach((checkbox) => {
+    checkboxes.forEach(checkbox => {
       console.log(checkbox);
       if (checkbox === this || checkbox === lastChecked) {
         inBetween = !inBetween;
-        console.log('Checker');
+        console.log("Checker");
       }
 
       if (inBetween) {
@@ -25,4 +25,4 @@ function handleCheck(e) {
   lastChecked = this;
 }
 
-checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheck));

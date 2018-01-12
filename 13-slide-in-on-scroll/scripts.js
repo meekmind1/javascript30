@@ -3,7 +3,7 @@ function debounce(func, wait = 20, immediate = true) {
   return () => {
     const context = this;
     function concatenateAll(...args) {
-      return args.join('');
+      return args.join("");
     }
     const later = () => {
       timeout = null;
@@ -16,12 +16,13 @@ function debounce(func, wait = 20, immediate = true) {
   };
 }
 
-const sliderImages = document.querySelectorAll('.slide-in');
+const sliderImages = document.querySelectorAll(".slide-in");
 
 function checkSlide() {
-  sliderImages.forEach((sliderImage) => {
+  sliderImages.forEach(sliderImage => {
     // Halfway through the image
-    const slideInAt = (window.scrollY + window.innerHeight) - (sliderImage.height / 2);
+    const slideInAt =
+      window.scrollY + window.innerHeight - sliderImage.height / 2;
 
     // Bottom of the image
     const imageBottom = sliderImage.offsetTop + sliderImage.height;
@@ -30,11 +31,11 @@ function checkSlide() {
     const isNotScrolledPast = window.scrollY < imageBottom;
 
     if (isHalfShown && isNotScrolledPast) {
-      sliderImage.classList.add('active');
+      sliderImage.classList.add("active");
     } else {
-      sliderImage.classList.remove('active');
+      sliderImage.classList.remove("active");
     }
   });
 }
 
-window.addEventListener('scroll', debounce(checkSlide));
+window.addEventListener("scroll", debounce(checkSlide));

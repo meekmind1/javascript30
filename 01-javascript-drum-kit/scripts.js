@@ -9,20 +9,20 @@ function playSound(e) {
   // If an associated audio element exists, reset the audio file to 0, play and add a class
   audio.currentTime = 0;
   audio.play();
-  key.classList.add('playing');
+  key.classList.add("playing");
 }
 
 function removeTransition(e) {
   // If the element doesn't have a transform, return the function
-  if (e.propertyName !== 'transform') return;
+  if (e.propertyName !== "transform") return;
 
   // If the element has a transform, remove class "playing" when the transform has finished
-  this.classList.remove('playing');
+  this.classList.remove("playing");
 }
 
 // Find all keys and add an event listener for transitions
-const keys = document.querySelectorAll('.key');
-keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+const keys = document.querySelectorAll(".key");
+keys.forEach(key => key.addEventListener("transitionend", removeTransition));
 
 // Add the event listener for the keyDown event
-window.addEventListener('keydown', playSound);
+window.addEventListener("keydown", playSound);

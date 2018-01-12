@@ -1,26 +1,26 @@
-const video = document.querySelector('.player');
-const canvas = document.querySelector('.photo');
-const ctx = canvas.getContext('2d');
-const strip = document.querySelector('.strip');
-const snap = document.querySelector('.snap');
+const video = document.querySelector(".player");
+const canvas = document.querySelector(".photo");
+const ctx = canvas.getContext("2d");
+const strip = document.querySelector(".strip");
+const snap = document.querySelector(".snap");
 
 function getVideo() {
-  navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-    .then((localMediaStream) => {
+  navigator.mediaDevices
+    .getUserMedia({ video: true, audio: false })
+    .then(localMediaStream => {
       video.src = window.URL.createObjectURL(localMediaStream);
       video.play();
     })
-    .catch((err) => {
-      console.error('OH NO!!!', err);
+    .catch(err => {
+      console.error("OH NO!!!", err);
     });
 }
-
 
 function redEffect(pixels) {
   const modifiedPixels = pixels;
   for (let i = 0; i < pixels.data.length; i += 4) {
     modifiedPixels.data[i + 0] = pixels.data[i + 0] + 100; // RED
-    modifiedPixels.data[i + 1] = pixels.data[i + 1] - 50;  // GREEN
+    modifiedPixels.data[i + 1] = pixels.data[i + 1] - 50; // GREEN
     modifiedPixels.data[i + 2] = pixels.data[i + 2] * 0.5; // BLUE
   }
   return modifiedPixels;
@@ -40,7 +40,7 @@ function greenScreen(pixels) {
   const modifiedPixels = pixels;
   const levels = {};
 
-  document.querySelectorAll('.rgb input').forEach((input) => {
+  document.querySelectorAll(".rgb input").forEach(input => {
     levels[input.name] = input.value;
   });
 
@@ -49,12 +49,14 @@ function greenScreen(pixels) {
     const green = pixels.data[i + 1];
     const blue = pixels.data[i + 2];
 
-    if (red >= levels.rmin
-      && green >= levels.gmin
-      && blue >= levels.bmin
-      && red <= levels.rmax
-      && green <= levels.gmax
-      && blue <= levels.bmax) {
+    if (
+      red >= levels.rmin &&
+      green >= levels.gmin &&
+      blue >= levels.bmin &&
+      red <= levels.rmax &&
+      green <= levels.gmax &&
+      blue <= levels.bmax
+    ) {
       // take it out!
       modifiedPixels.data[i + 3] = 0;
     }
@@ -89,15 +91,15 @@ function takePhoto() {
   snap.play();
 
   // Take the data out of the canvas
-  const data = canvas.toDataURL('image/jpeg');
-  const link = document.createElement('a');
+  const data = canvas.toDataURL("image/jpeg");
+  const link = document.createElement("a");
   link.href = data;
-  link.setAttribute('download', 'handsome');
+  link.setAttribute("download", "handsome");
   link.innerHTML = `<img src="${data}" alt="Handsome Man" />`;
   strip.insertBefore(link, strip.firstChild);
 }
 
 getVideo();
 
-video.addEventListener('canplay', paintToCanvas);
-document.querySelector('button').addEventListener('click', takePhoto);
+video.addEventListener("canplay", paintToCanvas);
+document.querySelector("button").addEventListener("click", takePhoto);
